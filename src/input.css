@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --color-page: #f3f4f8;
+  --color-page-dark: #13151b;
+  --color-surface-dark: #1e2129;
+  --color-hover: #eef0f6;
+  --color-hover-dark: #2a2e38;
+  --color-ink: #1f2430;
+  --color-ink-dark: #e8eaf0;
+  --color-muted: #545b6b;
+  --color-muted-dark: #a9afbd;
+  --color-line: #8a90a0;
+  --color-line-dark: #6f7687;
+  --color-divider: #e2e4eb;
+  --color-divider-dark: #2f3340;
+  --color-accent: #4338ca;
+  --color-accent-hover: #3730a3;
+  --color-accent-dark: #a5b4fc;
+  --color-accent-dark-hover: #c7d2fe;
+  --color-danger: #b42318;
+  --color-danger-dark: #fca5a5;
+}
