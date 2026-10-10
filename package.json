@@ -1,0 +1,23 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "To-Do List на Vue 3, Vite и Sass",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "Илья Абрамов",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.9",
+    "sass": "^1.105.1",
+    "vite": "^8.3.4"
+  }
+}

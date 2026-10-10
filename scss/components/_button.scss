@@ -1,0 +1,36 @@
+@use '../utils' as *;
+
+.button {
+  @include flex-center($gap: rem(8px));
+  @include focus-ring;
+  min-height: $control-height;
+  padding: 0 rem(18px);
+  border: 2px solid transparent;
+  border-radius: $radius-md;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color $transition-fast, border-color $transition-fast;
+
+  &__icon {
+    @include stroke-icon(18px);
+  }
+
+  &--primary {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+
+    &:hover {
+      background-color: var(--color-accent-hover);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text);
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+    }
+  }
+}

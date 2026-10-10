@@ -1,0 +1,30 @@
+@use '../utils' as *;
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: rem(6px);
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__input {
+    @include focus-ring(1px);
+    min-height: $control-height;
+    padding: 0 rem(14px);
+    border: 2px solid var(--color-border);
+    border-radius: $radius-md;
+    background-color: var(--color-bg);
+
+    &[aria-invalid='true'] {
+      border-color: var(--color-danger);
+    }
+  }
+
+  &__error {
+    min-height: 1.5em;
+    color: var(--color-danger);
+    font-size: rem(14px);
+  }
+}

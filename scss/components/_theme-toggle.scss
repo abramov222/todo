@@ -1,0 +1,22 @@
+@use '../utils' as *;
+
+.theme-toggle {
+  @include flex-center;
+  @include focus-ring;
+  width: $control-height;
+  height: $control-height;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+  border-radius: $radius-round;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: var(--color-surface-hover);
+  }
+
+  &__icon {
+    @include stroke-icon;
+  }
+}

@@ -1,0 +1,31 @@
+@use '../utils' as *;
+
+.search {
+  position: relative;
+  flex-grow: 1;
+
+  &__icon {
+    @include stroke-icon(18px);
+    position: absolute;
+    top: 50%;
+    left: rem(14px);
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  &__input {
+    @include focus-ring(1px);
+    width: 100%;
+    min-height: $control-height;
+    padding: 0 rem(14px) 0 rem(42px);
+    border: 2px solid var(--color-border);
+    border-radius: $radius-md;
+    background-color: var(--color-surface);
+
+    &::placeholder {
+      color: var(--color-text-muted);
+      opacity: 1;
+    }
+  }
+}
