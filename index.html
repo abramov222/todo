@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru" class="scheme-light dark:scheme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Список задач с поиском, темами и сохранением в браузере">
+  <title>To-Do List</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('todo-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) {}
+  </script>
+  <link rel="stylesheet" href="dist/css/main.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body class="min-h-screen bg-page text-ink transition-colors motion-reduce:transition-none dark:bg-page-dark dark:text-ink-dark">
+  <div class="mx-auto max-w-[720px] px-4 pt-6 pb-12 md:pt-12">
+    <header class="mb-6 flex items-start justify-between gap-4">
+      <div>
+        <h1 class="text-[28px] leading-tight font-bold md:text-4xl">Мои задачи</h1>
+        <p class="mt-1 text-muted dark:text-muted-dark js-summary">Задач нет</p>
+      </div>
+      <button type="button" class="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 border-line bg-white transition-colors hover:bg-hover focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none dark:border-line-dark dark:bg-surface-dark dark:hover:bg-hover-dark dark:focus-visible:outline-accent-dark-hover js-theme-toggle" aria-pressed="false">
+        <span class="sr-only">Тёмная тема</span>
+        <svg class="size-5 fill-none stroke-current stroke-2 dark:hidden" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="hidden size-5 fill-none stroke-current stroke-2 dark:block" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </button>
+    </header>
+
+    <main class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3 min-[480px]:flex-row min-[480px]:items-center">
+        <div class="relative grow">
+          <label for="search" class="sr-only">Поиск задач</label>
+          <svg class="pointer-events-none absolute top-1/2 left-3.5 size-[18px] -translate-y-1/2 fill-none stroke-current stroke-2 text-muted dark:text-muted-dark" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input id="search" class="min-h-11 w-full rounded-[10px] border-2 border-line bg-white pr-3.5 pl-[42px] placeholder:text-muted focus-visible:outline-3 focus-visible:outline-offset-1 focus-visible:outline-accent dark:border-line-dark dark:bg-surface-dark dark:placeholder:text-muted-dark dark:focus-visible:outline-accent-dark-hover js-search" type="search" placeholder="Найти задачу..." autocomplete="off">
+        </div>
+        <button type="button" class="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-[10px] border-2 border-transparent bg-accent px-[18px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-hover focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none dark:bg-accent-dark dark:text-page-dark dark:hover:bg-accent-dark-hover dark:focus-visible:outline-accent-dark-hover js-add-task">
+          <svg class="size-[18px] fill-none stroke-current stroke-2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Добавить задачу
+        </button>
+      </div>
+
+      <section aria-labelledby="active-heading">
+        <h2 class="mb-3 flex items-center gap-2 text-lg font-bold focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent dark:focus-visible:outline-accent-dark-hover" id="active-heading" tabindex="-1">
+          Активные <span class="min-w-7 rounded-full bg-hover px-2 text-center text-sm dark:bg-hover-dark js-active-count">0</span>
+        </h2>
+        <ul class="overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] empty:hidden dark:bg-surface-dark js-active-list"></ul>
+        <p class="rounded-2xl border-2 border-dashed border-divider p-4 text-center text-muted dark:border-divider-dark dark:text-muted-dark js-active-empty">Активных задач нет</p>
+      </section>
+
+      <section aria-labelledby="done-heading">
+        <h2 class="mb-3 flex items-center gap-2 text-lg font-bold focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent dark:focus-visible:outline-accent-dark-hover" id="done-heading" tabindex="-1">
+          Выполненные <span class="min-w-7 rounded-full bg-hover px-2 text-center text-sm dark:bg-hover-dark js-done-count">0</span>
+        </h2>
+        <ul class="overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] empty:hidden dark:bg-surface-dark js-done-list"></ul>
+        <p class="rounded-2xl border-2 border-dashed border-divider p-4 text-center text-muted dark:border-divider-dark dark:text-muted-dark js-done-empty">Выполненных задач нет</p>
+      </section>
+
+      <p class="sr-only js-status" role="status" aria-live="polite"></p>
+    </main>
+  </div>
+
+  <dialog class="m-auto w-[calc(100%_-_32px)] max-w-[480px] rounded-2xl bg-white p-6 text-ink shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop:bg-[rgba(15,18,30,0.55)] dark:bg-surface-dark dark:text-ink-dark dark:backdrop:bg-black/70 js-task-dialog" aria-labelledby="task-dialog-title">
+    <form class="flex flex-col gap-5 js-task-form" method="dialog" novalidate>
+      <h2 class="text-[22px] font-bold js-dialog-title" id="task-dialog-title">Новая задача</h2>
+      <div class="flex flex-col gap-1.5">
+        <label class="font-semibold" for="task-title">Название</label>
+        <input class="min-h-11 rounded-[10px] border-2 border-line bg-page px-3.5 focus-visible:outline-3 focus-visible:outline-offset-1 focus-visible:outline-accent aria-invalid:border-danger dark:border-line-dark dark:bg-page-dark dark:focus-visible:outline-accent-dark-hover dark:aria-invalid:border-danger-dark js-task-input" id="task-title" name="title" type="text" maxlength="200" required autocomplete="off" aria-describedby="task-title-error">
+        <p class="min-h-[1.5em] text-sm text-danger dark:text-danger-dark js-task-error" id="task-title-error"></p>
+      </div>
+      <div class="flex flex-col-reverse gap-3 min-[480px]:flex-row min-[480px]:justify-end">
+        <button type="button" class="flex min-h-11 cursor-pointer items-center justify-center rounded-[10px] border-2 border-line px-[18px] font-semibold transition-colors hover:bg-hover focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none dark:border-line-dark dark:hover:bg-hover-dark dark:focus-visible:outline-accent-dark-hover js-close-dialog">Отмена</button>
+        <button type="submit" class="flex min-h-11 cursor-pointer items-center justify-center rounded-[10px] border-2 border-transparent bg-accent px-[18px] font-semibold text-white transition-colors hover:bg-accent-hover focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none dark:bg-accent-dark dark:text-page-dark dark:hover:bg-accent-dark-hover dark:focus-visible:outline-accent-dark-hover js-submit-task">Добавить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="task-template">
+    <li class="group flex items-center gap-3 py-1.5 pr-2 pl-4 transition-colors not-first:border-t not-first:border-divider hover:bg-hover motion-reduce:transition-none dark:not-first:border-divider-dark dark:hover:bg-hover-dark" data-task data-done="false">
+      <input class="size-[22px] shrink-0 cursor-pointer accent-accent focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent dark:accent-accent-dark dark:focus-visible:outline-accent-dark-hover" type="checkbox" data-role="done">
+      <label class="min-w-0 grow cursor-pointer py-2 wrap-anywhere group-data-[done=true]:text-muted group-data-[done=true]:line-through group-data-[done=true]:decoration-2 dark:group-data-[done=true]:text-muted-dark" data-role="title"></label>
+      <div class="flex shrink-0">
+        <button type="button" class="flex size-11 cursor-pointer items-center justify-center rounded-md text-muted transition-colors hover:bg-hover hover:text-ink focus-visible:outline-3 focus-visible:outline-offset-1 focus-visible:outline-accent motion-reduce:transition-none dark:text-muted-dark dark:hover:bg-hover-dark dark:hover:text-ink-dark dark:focus-visible:outline-accent-dark-hover" data-action="edit">
+          <span class="sr-only">Редактировать задачу</span>
+          <svg class="size-5 fill-none stroke-current stroke-2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </button>
+        <button type="button" class="flex size-11 cursor-pointer items-center justify-center rounded-md text-muted transition-colors hover:bg-hover hover:text-danger focus-visible:outline-3 focus-visible:outline-offset-1 focus-visible:outline-accent motion-reduce:transition-none dark:text-muted-dark dark:hover:bg-hover-dark dark:hover:text-danger-dark dark:focus-visible:outline-accent-dark-hover" data-action="delete">
+          <span class="sr-only">Удалить задачу</span>
+          <svg class="size-5 fill-none stroke-current stroke-2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+            <path d="M3 6h18"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+        </button>
+      </div>
+    </li>
+  </template>
+</body>
+</html>
