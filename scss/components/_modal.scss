@@ -1,0 +1,38 @@
+@use '../utils' as *;
+
+.modal {
+  width: calc(100% - #{2 * $container-padding});
+  max-width: rem(480px);
+  margin: auto;
+  padding: rem(24px);
+  border: none;
+  border-radius: $radius-lg;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: $shadow-modal;
+
+  &::backdrop {
+    background-color: var(--color-backdrop);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20px);
+  }
+
+  &__title {
+    font-size: rem(22px);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: rem(12px);
+
+    @include respond-to(mobile) {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+}
