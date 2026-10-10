@@ -18,20 +18,5 @@
 
   &__icon {
     @include stroke-icon;
-
-    &--sun {
-      display: none;
-    }
-  }
-}
-
-// В тёмной теме кнопка показывает солнце — переход обратно к светлой
-[data-theme='dark'] .theme-toggle__icon {
-  &--moon {
-    display: none;
-  }
-
-  &--sun {
-    display: block;
   }
 }
