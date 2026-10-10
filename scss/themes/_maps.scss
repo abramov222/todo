@@ -1,0 +1,32 @@
+// Палитры подобраны с контрастом текста не ниже 4.5:1 на своих фонах
+$theme-light: (
+  bg: #f3f4f8,
+  surface: #ffffff,
+  surface-hover: #eef0f6,
+  text: #1f2430,
+  text-muted: #545b6b,
+  border: #8a90a0,
+  divider: #e2e4eb,
+  accent: #4338ca,
+  accent-hover: #3730a3,
+  on-accent: #ffffff,
+  danger: #b42318,
+  focus: #4338ca,
+  backdrop: rgba(15, 18, 30, 0.55),
+);
+
+$theme-dark: (
+  bg: #13151b,
+  surface: #1e2129,
+  surface-hover: #2a2e38,
+  text: #e8eaf0,
+  text-muted: #a9afbd,
+  border: #6f7687,
+  divider: #2f3340,
+  accent: #a5b4fc,
+  accent-hover: #c7d2fe,
+  on-accent: #13151b,
+  danger: #fca5a5,
+  focus: #c7d2fe,
+  backdrop: rgba(0, 0, 0, 0.7),
+);

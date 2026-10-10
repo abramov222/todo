@@ -1,0 +1,12 @@
+@use '../utils' as *;
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+
+  @include respond-to(mobile) {
+    flex-direction: row;
+    align-items: center;
+  }
+}

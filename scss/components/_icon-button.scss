@@ -1,0 +1,26 @@
+@use '../utils' as *;
+
+.icon-button {
+  @include flex-center;
+  @include focus-ring(1px);
+  width: $control-height;
+  height: $control-height;
+  border: none;
+  border-radius: $radius-sm;
+  background: none;
+  color: var(--color-text-muted);
+  transition: background-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    background-color: var(--color-surface-hover);
+    color: var(--color-text);
+  }
+
+  &__icon {
+    @include stroke-icon;
+  }
+
+  &--danger:hover {
+    color: var(--color-danger);
+  }
+}
