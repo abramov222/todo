@@ -2,12 +2,11 @@
 
 .header {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: rem(16px);
-  margin-bottom: rem(24px);
+  flex-direction: column;
+  gap: rem(4px);
 
   &__title {
+    @include focus-ring;
     font-size: rem(28px);
     line-height: 1.2;
 
@@ -17,7 +16,6 @@
   }
 
   &__subtitle {
-    margin-top: rem(4px);
     color: var(--color-text-muted);
   }
 }

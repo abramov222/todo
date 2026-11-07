@@ -28,8 +28,13 @@ button {
   cursor: pointer;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
+}
+
+a {
+  color: inherit;
 }
 
 [hidden] {
