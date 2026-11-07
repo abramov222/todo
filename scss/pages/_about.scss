@@ -1,0 +1,214 @@
+@use '../utils' as *;
+
+.about {
+  gap: rem(40px);
+
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(12px);
+    padding: rem(28px) rem(20px);
+    border-radius: $radius-lg;
+    background:
+      radial-gradient(circle at 100% 0, var(--color-surface-hover), transparent 60%),
+      var(--color-surface);
+    box-shadow: $shadow-card;
+
+    @include respond-to(tablet) {
+      padding: rem(40px);
+    }
+  }
+
+  &__eyebrow {
+    color: var(--color-accent);
+    font-size: rem(14px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    @include focus-ring;
+    font-size: rem(32px);
+    line-height: 1.1;
+
+    @include respond-to(tablet) {
+      font-size: rem(44px);
+    }
+  }
+
+  &__lead {
+    max-width: 60ch;
+    color: var(--color-text-muted);
+    font-size: rem(18px);
+  }
+
+  &__cta {
+    margin-top: rem(8px);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16px);
+  }
+
+  &__heading {
+    font-size: rem(22px);
+  }
+
+  &__note {
+    padding: rem(20px);
+    border: 2px dashed var(--color-divider);
+    border-radius: $radius-lg;
+
+    code {
+      padding: 0 rem(4px);
+      border-radius: $radius-sm;
+      background-color: var(--color-surface-hover);
+    }
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(12px);
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: rem(4px);
+    padding: rem(16px);
+    border-radius: $radius-lg;
+    background-color: var(--color-surface);
+    box-shadow: $shadow-card;
+  }
+
+  &__label {
+    color: var(--color-text-muted);
+    font-size: rem(14px);
+  }
+
+  &__value {
+    color: var(--color-accent);
+    font-size: rem(32px);
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8px);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+
+  &__track {
+    height: rem(12px);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: rem(6px);
+    background-color: var(--color-surface);
+  }
+
+  &__bar {
+    height: 100%;
+    background-color: var(--color-accent);
+    transition: width 0.4s ease;
+  }
+}
+
+.feature-grid {
+  display: grid;
+  gap: rem(12px);
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__item {
+    padding: rem(20px);
+    border-top: 4px solid var(--color-accent);
+    border-radius: $radius-lg;
+    background-color: var(--color-surface);
+    box-shadow: $shadow-card;
+  }
+
+  &__title {
+    margin-bottom: rem(6px);
+    font-size: rem(18px);
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20px);
+  margin-left: rem(8px);
+  padding-left: rem(20px);
+  border-left: 2px solid var(--color-divider);
+
+  &__item {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: rem(4px);
+      left: rem(-30px);
+      width: rem(18px);
+      height: rem(18px);
+      border: 4px solid var(--color-bg);
+      border-radius: $radius-round;
+      background-color: var(--color-accent);
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 0 rem(8px);
+    border-radius: rem(12px);
+    background-color: var(--color-surface-hover);
+    font-size: rem(14px);
+    font-weight: 600;
+  }
+
+  &__title {
+    margin-top: rem(4px);
+    font-size: rem(18px);
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(8px);
+
+  &__item {
+    padding: rem(6px) rem(12px);
+    border: 1px solid var(--color-border);
+    border-radius: rem(20px);
+    background-color: var(--color-surface);
+    font-size: rem(14px);
+  }
+}

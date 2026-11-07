@@ -1,0 +1,45 @@
+@use '../utils' as *;
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16px);
+  padding: rem(24px) rem(20px);
+  border-radius: $radius-lg;
+  background-color: var(--color-surface);
+  box-shadow: $shadow-card;
+
+  @include respond-to(mobile) {
+    padding: rem(32px);
+  }
+
+  &__title {
+    @include focus-ring;
+    font-size: rem(28px);
+    line-height: 1.2;
+  }
+
+  &__notice {
+    padding: rem(12px) rem(14px);
+    border-left: 4px solid var(--color-accent);
+    border-radius: $radius-sm;
+    background-color: var(--color-surface-hover);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+  }
+
+  &__footer {
+    text-align: center;
+  }
+
+  &__hint {
+    padding-top: rem(16px);
+    border-top: 1px solid var(--color-divider);
+    color: var(--color-text-muted);
+    font-size: rem(14px);
+  }
+}

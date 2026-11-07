@@ -1,0 +1,13 @@
+@use '../utils' as *;
+
+.text-link {
+  @include focus-ring;
+  border-radius: $radius-sm;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--color-accent-hover);
+  }
+}

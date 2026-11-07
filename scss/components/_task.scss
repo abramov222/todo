@@ -1,0 +1,46 @@
+@use '../utils' as *;
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: rem(12px);
+  padding: rem(6px) rem(8px) rem(6px) rem(16px);
+  transition: background-color $transition-fast;
+
+  & + & {
+    border-top: 1px solid var(--color-divider);
+  }
+
+  &:hover {
+    background-color: var(--color-surface-hover);
+  }
+
+  &__checkbox {
+    @include focus-ring;
+    width: rem(22px);
+    height: rem(22px);
+    flex-shrink: 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+  }
+
+  &__title {
+    flex-grow: 1;
+    min-width: 0;
+    padding: rem(8px) 0;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  // Выполненная задача отличается не только цветом: зачёркивание и галочка в чекбоксе
+  &--done &__title {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+  }
+}

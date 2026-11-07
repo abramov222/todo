@@ -1,0 +1,23 @@
+@use '../utils' as *;
+
+.app {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: rem(24px) $container-padding rem(48px);
+
+  @include respond-to(tablet) {
+    padding-top: rem(48px);
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+
+  &--narrow {
+    width: 100%;
+    max-width: rem(440px);
+    margin: 0 auto;
+  }
+}

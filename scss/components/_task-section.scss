@@ -1,0 +1,40 @@
+@use '../utils' as *;
+
+.task-section {
+  &__title {
+    @include focus-ring;
+    display: flex;
+    align-items: center;
+    gap: rem(8px);
+    margin-bottom: rem(12px);
+    font-size: rem(18px);
+  }
+
+  &__count {
+    min-width: rem(28px);
+    padding: 0 rem(8px);
+    border-radius: rem(14px);
+    background-color: var(--color-surface-hover);
+    font-size: rem(14px);
+    text-align: center;
+  }
+
+  &__list {
+    overflow: hidden;
+    border-radius: $radius-lg;
+    background-color: var(--color-surface);
+    box-shadow: $shadow-card;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__empty {
+    padding: rem(16px);
+    border: 2px dashed var(--color-divider);
+    border-radius: $radius-lg;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+}
